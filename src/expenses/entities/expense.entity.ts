@@ -2,9 +2,11 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { EExpenseCategory } from '../category.enum';
+import { User } from '../../auth/user.entity';
 
 @Entity()
 export class Expense {
@@ -22,4 +24,7 @@ export class Expense {
 
   @Column()
   comment: string;
+
+  @ManyToOne(() => User, (user) => user.expenses)
+  user?: User;
 }
