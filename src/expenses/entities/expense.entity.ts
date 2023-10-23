@@ -16,13 +16,13 @@ export class Expense {
   @CreateDateColumn()
   date: string;
 
-  @Column()
+  @Column('float4')
   amount: number;
 
   @Column()
   category: EExpenseCategory;
 
-  @Column()
+  @Column({ nullable: true })
   comment: string;
 
   @ManyToOne(() => User, (user) => user.expenses)

@@ -3,13 +3,18 @@ import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseCategoryDto } from './dto/update-expense.dto';
 import { ExpensesRepository } from './expenses.repository';
 import { Expense } from './entities/expense.entity';
+import { User } from '../auth/user.entity';
 
 @Injectable()
 export class ExpensesService {
   constructor(private expensesRepository: ExpensesRepository) {}
 
-  create(createExpenseDto: CreateExpenseDto) {
-    return this.expensesRepository.save(createExpenseDto);
+  create(createExpenseDto: CreateExpenseDto, user: User) {
+    return this.expensesRepository.save({
+      ...createExpenseDto,
+      date: createExpenseDto.date || new Date().toLocaleString(),
+      user,
+    });
   }
 
   findAll() {

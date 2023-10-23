@@ -12,6 +12,8 @@ import { ExpensesService } from './expenses.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseCategoryDto } from './dto/update-expense.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from '../auth/get-user.decorator';
+import { User } from '../auth/user.entity';
 
 @UseGuards(AuthGuard())
 @Controller('expenses')
@@ -19,8 +21,8 @@ export class ExpensesController {
   constructor(private readonly expensesService: ExpensesService) {}
 
   @Post()
-  create(@Body() createExpenseDto: CreateExpenseDto) {
-    return this.expensesService.create(createExpenseDto);
+  create(@Body() createExpenseDto: CreateExpenseDto, @GetUser() user: User) {
+    return this.expensesService.create(createExpenseDto, user);
   }
 
   @Get()

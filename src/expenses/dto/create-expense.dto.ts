@@ -1,4 +1,10 @@
-import { IsEnum, IsNumber, MaxLength, MinLength } from 'class-validator';
+import {
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 import { EExpenseCategory } from '../category.enum';
 
 export class CreateExpenseDto {
@@ -11,4 +17,7 @@ export class CreateExpenseDto {
   @MinLength(0)
   @MaxLength(50)
   comment: string;
+
+  @IsOptional()
+  date?: string;
 }
