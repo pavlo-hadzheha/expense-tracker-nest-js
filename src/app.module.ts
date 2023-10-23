@@ -3,6 +3,7 @@ import { ExpensesModule } from './expenses/expenses.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import * as process from 'process';
 
 @Module({
   imports: [
