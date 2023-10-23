@@ -9,7 +9,6 @@ import * as process from 'process';
   imports: [
     ConfigModule.forRoot({
       envFilePath: [`.env.${process.env.STAGE}`],
-      ignoreEnvFile: process.env.STAGE === 'prod',
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
